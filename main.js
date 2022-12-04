@@ -31,13 +31,19 @@ async function getData() {
       const { title } = post;
       const { body } = post;
 
-      const newPost = document.importNode(postTemplate.content, true);
-      const postTitle = newPost.querySelector('.post__title');
-      const postBody = newPost.querySelector('.post__body');
+      fetch('http://unsplash.it/300/200')
+        .then((res) => res.blob())
+        .then((blob) => {
+          const newPost = document.importNode(postTemplate.content, true);
+          const postTitle = newPost.querySelector('.post__title');
+          const postBody = newPost.querySelector('.post__body');
+          const postImg = newPost.querySelector('.post__img');
 
-      postTitle.innerText = title;
-      postBody.innerText = body;
-      postSection.appendChild(newPost);
+          postImg.src = URL.createObjectURL(blob);
+          postTitle.innerText = title;
+          postBody.innerText = body;
+          postSection.appendChild(newPost);
+        });
     }
   });
 }
