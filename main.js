@@ -33,7 +33,7 @@ async function getData() {
       const { title } = post;
       const { body } = post;
 
-      fetch('http://unsplash.it/300/200')
+      fetch('https://unsplash.it/300/200')
         .then((res) => res.blob())
         .then((blob) => {
           const newPost = document.importNode(postTemplate.content, true);
